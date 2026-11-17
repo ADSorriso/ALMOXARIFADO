@@ -26,11 +26,19 @@
 .stage-hint{z-index:6;background:#0a1427b6;padding:6px 10px;border-radius:12px;max-width:calc(100% - 25px)}
 @media(max-width:1000px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}#stage{height:clamp(540px,74vh,820px)}}
 @media(max-width:650px){.layout{padding:8px;gap:12px}#stage{height:clamp(390px,64vh,570px);min-height:390px}.seat,.seat.north,.seat.south,.seat.east,.seat.west{width:110px;min-height:55px;padding:6px 7px;gap:5px}.seat .avatar{width:29px;height:29px}.seat .seat-name{font-size:10px}.seat .seat-meta,.seat .seat-status{font-size:8px}.seat .seat-tag{font-size:7px}.stage-hint{bottom:5px;font-size:9px}}
+
+/* v2.3: área de respiro real em volta da mesa, sem rótulos sobre as peças */
+#stage{height:clamp(660px,84vh,940px);background:radial-gradient(ellipse at 50% 55%,#142137,#0a1424 76%)}
+.seat,.seat.north,.seat.south,.seat.east,.seat.west{width:148px;min-height:69px;background:#0a1729f5;border-color:color-mix(in srgb,var(--seat-color) 46%,#30465d);box-shadow:0 10px 24px #0009;transition:border-color .15s,box-shadow .15s;}
+.seat.active{background:#15283bee}
+#piece-style,#piece-player{max-width:170px}
+@media(max-width:1000px){#stage{height:clamp(630px,80vh,830px)}}
+@media(max-width:650px){#stage{height:clamp(480px,67vh,650px);min-height:480px}.seat,.seat.north,.seat.south,.seat.east,.seat.west{width:108px;min-height:53px}}
 </style>
 </head>
 <body>
 <header><div><h1>🎲 LUDO <span>3D</span> <span style="color:#f8fbff">ARENA</span></h1><div class="sub">Seu tabuleiro, sua disputa, sua vitória</div></div><div class="badge">● JOGAR NO NAVEGADOR</div></header>
-<main class="layout"><section id="stage"><canvas id="canvas"></canvas><div class="stage-title">✦ TABULEIRO INTERATIVO 3D</div><div id="seats" aria-label="Jogadores posicionados em torno do tabuleiro"></div><div id="toast"></div><div class="stage-hint">Arraste para girar • Role para aproximar • Clique nas peças iluminadas</div></section><aside class="side"><div class="panel"><div class="eyebrow">Vez de jogar</div><div class="turn-name"><span class="dot" id="turn-dot"></span><span id="turn-name">Vermelho</span></div><div class="dice-area"><div id="dice-scene" class="dice-scene" aria-label="Dado tridimensional"><div id="dice-cube" class="dice-cube"></div></div><div class="dice-meta" id="die-meta">Clique em lançar para jogar o dado e começar a partida.</div></div><button id="roll" class="btn">🎲 LANÇAR DADO</button><p id="hint" class="hint" aria-live="polite">Tire 6 para tirar uma peça da base.</p></div><div class="panel"><div class="eyebrow">Placar da partida</div><div id="players" class="players"></div></div><div class="panel"><div class="eyebrow">Configuração</div><label class="formrow">Quantidade de jogadores <select id="player-count"><option value="2">2 jogadores</option><option value="3">3 jogadores</option><option value="4" selected>4 jogadores</option></select></label><button id="reset" class="btn secondary">↻ NOVA PARTIDA</button><div class="editor"><div class="eyebrow">Personalizar jogadores</div><div class="formrow"><label for="edit-player">Escolha o jogador</label><select id="edit-player"></select></div><div class="editor-grid"><label>Nome<input id="edit-name" maxlength="20" placeholder="Nome do jogador" /></label><label>Foto / Avatar<input id="edit-photo" class="file-input" type="file" accept="image/*" /></label></div><div class="editor-actions"><button id="save-player" class="small-btn">✓ Salvar perfil</button><button id="clear-photo" class="small-btn">Remover foto</button></div><p class="editor-note">As fotos ficam somente neste navegador. Não há cadastro online nesta versão.</p></div><p class="rules"><strong>Como jogar:</strong> tire 6 para sair da base. Avance o número de casas do dado. Capture adversários em casas sem estrela; casas de início e com estrela são seguras. Para chegar ao centro, precisa tirar o número exato. Quem chegar com as 4 peças vence.</p></div></aside></main>
+<main class="layout"><section id="stage"><canvas id="canvas"></canvas><div class="stage-title">✦ TABULEIRO INTERATIVO 3D</div><div id="seats" aria-label="Jogadores posicionados em torno do tabuleiro"></div><div id="toast"></div><div class="stage-hint">Arraste para girar • Role para aproximar • Clique nas peças iluminadas</div></section><aside class="side"><div class="panel"><div class="eyebrow">Vez de jogar</div><div class="turn-name"><span class="dot" id="turn-dot"></span><span id="turn-name">Vermelho</span></div><div class="dice-area"><div id="dice-scene" class="dice-scene" aria-label="Dado tridimensional"><div id="dice-cube" class="dice-cube"></div></div><div class="dice-meta" id="die-meta">Clique em lançar para jogar o dado e começar a partida.</div></div><button id="roll" class="btn">🎲 LANÇAR DADO</button><p id="hint" class="hint" aria-live="polite">Tire 6 para tirar uma peça da base.</p></div><div class="panel"><div class="eyebrow">Placar da partida</div><div id="players" class="players"></div></div><div class="panel"><div class="eyebrow">Configuração</div><label class="formrow">Quantidade de jogadores <select id="player-count"><option value="2">2 jogadores</option><option value="3">3 jogadores</option><option value="4" selected>4 jogadores</option></select></label><button id="reset" class="btn secondary">↻ NOVA PARTIDA</button><div class="editor"><div class="eyebrow">Modelos 3D das peças</div><p class="editor-note">Escolha a aparência das 4 peças de cada cor, sem mudar as regras.</p><div class="formrow"><label for="piece-player">Jogador</label><select id="piece-player"></select></div><div class="formrow"><label for="piece-style">Modelo</label><select id="piece-style"><option value="pawn">Peão clássico</option><option value="rook">Torre</option><option value="king">Rei</option><option value="queen">Rainha</option><option value="knight">Cavalo</option><option value="bishop">Bispo</option></select></div><p class="editor-note" id="piece-note">As peças mudam imediatamente no tabuleiro.</p></div><div class="editor"><div class="eyebrow">Personalizar jogadores</div><div class="formrow"><label for="edit-player">Escolha o jogador</label><select id="edit-player"></select></div><div class="editor-grid"><label>Nome<input id="edit-name" maxlength="20" placeholder="Nome do jogador" /></label><label>Foto / Avatar<input id="edit-photo" class="file-input" type="file" accept="image/*" /></label></div><div class="editor-actions"><button id="save-player" class="small-btn">✓ Salvar perfil</button><button id="clear-photo" class="small-btn">Remover foto</button></div><p class="editor-note">As fotos ficam somente neste navegador. Não há cadastro online nesta versão.</p></div><p class="rules"><strong>Como jogar:</strong> tire 6 para sair da base. Avance o número de casas do dado. Capture adversários em casas sem estrela; casas de início e com estrela são seguras. Para chegar ao centro, precisa tirar o número exato. Quem chegar com as 4 peças vence.</p></div></aside></main>
 <div class="footer">Versão Arena Premium • Protótipo local para 2 a 4 jogadores no mesmo aparelho • Requer internet para carregar o motor gráfico 3D</div>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
 <script type="module">
@@ -38,9 +46,9 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const canvas=document.querySelector('#canvas'),stage=document.querySelector('#stage');
 const scene=new THREE.Scene();scene.background=new THREE.Color('#101c2e');scene.fog=new THREE.Fog('#101c2e',40,80);
-const camera=new THREE.PerspectiveCamera(42,1,.1,100);camera.position.set(12,19,18);const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.79;
+const camera=new THREE.PerspectiveCamera(42,1,.1,100);camera.position.set(16,28,31);const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.79;
 scene.add(new THREE.HemisphereLight('#b8d1f2','#283a55',.95));scene.add(new THREE.AmbientLight('#8ca6cb',.18));const light=new THREE.DirectionalLight('#d4dded',1.45);light.position.set(-9,18,11);light.castShadow=true;light.shadow.mapSize.set(2048,2048);light.shadow.camera.left=-14;light.shadow.camera.right=14;light.shadow.camera.top=14;light.shadow.camera.bottom=-14;scene.add(light);const glow=new THREE.PointLight('#5a91cb',8,31);glow.position.set(8,10,-7);scene.add(glow);const fill=new THREE.DirectionalLight('#769dc8',.45);fill.position.set(10,9,-12);scene.add(fill);
-const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.minDistance=21;controls.maxDistance=48;controls.minPolarAngle=.25;controls.maxPolarAngle=1.38;controls.target.set(0,0,0);controls.enablePan=false;
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.minDistance=37;controls.maxDistance=62;controls.minPolarAngle=.25;controls.maxPolarAngle=1.38;controls.target.set(0,0,0);controls.enablePan=false;
 const C=['#ff5463','#39d89a','#ffd350','#479bff'],N=['Vermelho','Verde','Amarelo','Azul'];let active=[0,1,2,3];const root=new THREE.Group();scene.add(root);
 function mat(col,metal=0,rough=.45){return new THREE.MeshStandardMaterial({color:col,metalness:metal,roughness:rough})}const white=mat('#9baabd',.03,.82),borderMat=mat('#63758d',.12,.82),starMat=mat('#bac7d7',.04,.75);const colors=C.map(c=>mat(c,.1,.35));const lightColors=C.map(c=>new THREE.Color(c).lerp(new THREE.Color('#ffffff'),.5));
 const boxGeo=new THREE.BoxGeometry(1,.16,1);function sq(x,z,color,height=.16,size=.96){const mesh=new THREE.Mesh(boxGeo,color);mesh.scale.set(size,height/.16,size);mesh.position.set(x-7,height/2,z-7);mesh.receiveShadow=true;root.add(mesh);return mesh}
@@ -54,9 +62,52 @@ for(let i=0;i<4;i++){const cx=i===0||i===1?3:11,cz=i===0||i===3?3:11;const inset
 for(let i=0;i<4;i++){let points=i===0?[[-1,-1],[1,-1],[0,0]]:i===1?[[-1,-1],[-1,1],[0,0]]:i===2?[[-1,1],[1,1],[0,0]]:[[1,-1],[1,1],[0,0]];const shape=new THREE.Shape();points.forEach((p,j)=>j?shape.lineTo(...p):shape.moveTo(...p));shape.closePath();const geo=new THREE.ShapeGeometry(shape),mesh=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:C[i],side:THREE.DoubleSide}));mesh.rotation.x=-Math.PI/2;mesh.position.y=.19;root.add(mesh)}
 // Safety star markers on selected global squares.
 const safe=new Set([0,8,13,21,26,34,39,47]);for(const idx of safe){const [x,z]=path[idx];const shape=new THREE.Shape();const out=.32,inn=.15;for(let n=0;n<10;n++){const a=n*Math.PI/5-Math.PI/2,r=n%2?inn:out;const px=Math.cos(a)*r,pz=Math.sin(a)*r;n?shape.lineTo(px,pz):shape.moveTo(px,pz)}shape.closePath();const mesh=new THREE.Mesh(new THREE.ShapeGeometry(shape),new THREE.MeshBasicMaterial({color:start.includes(idx)?'#ffffff':'#e3ac38',side:THREE.DoubleSide}));mesh.rotation.x=-Math.PI/2;mesh.position.set(x-7,.185,z-7);root.add(mesh)}
-// Piece geometry: plinth, tapered body, polished ball.
-const pieceGroup=new THREE.Group();root.add(pieceGroup);const pieces=[];function makePiece(player,id){const group=new THREE.Group();const pedestal=new THREE.Mesh(new THREE.CylinderGeometry(.34,.4,.16,32),colors[player]);pedestal.position.y=.09;group.add(pedestal);const body=new THREE.Mesh(new THREE.CylinderGeometry(.17,.29,.46,32),colors[player]);body.position.y=.37;group.add(body);const neck=new THREE.Mesh(new THREE.TorusGeometry(.19,.045,9,28),mat('#b6c3d3',.12,.68));neck.rotation.x=Math.PI/2;neck.position.y=.61;group.add(neck);const head=new THREE.Mesh(new THREE.SphereGeometry(.21,24,16),colors[player]);head.position.y=.77;group.add(head);group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.piece={player,id}}});pieceGroup.add(group);return {player,id,progress:-1,group,target:new THREE.Vector3(),jumpUntil:0}}
+// Peças configuráveis: formas distintas em 3D, mantendo a colisão e as regras.
+const pieceGroup=new THREE.Group();root.add(pieceGroup);const pieces=[];
+const styleNames={pawn:'Peão clássico',rook:'Torre',king:'Rei',queen:'Rainha',knight:'Cavalo',bishop:'Bispo'};
+let pieceStyles=['pawn','pawn','pawn','pawn'];
+try{const saved=JSON.parse(localStorage.getItem('ludo-3d-piece-styles')||'null');if(Array.isArray(saved))pieceStyles=saved.map(v=>styleNames[v]?v:'pawn').slice(0,4);while(pieceStyles.length<4)pieceStyles.push('pawn')}catch(e){}
+function buildPiece(group,player,id){
+ while(group.children.length){const child=group.children[0];group.remove(child);child.traverse(o=>{if(o.isMesh)o.geometry.dispose()})}
+ const main=colors[player],metal=mat('#bac9dc',.4,.38),detail=mat(new THREE.Color(C[player]).multiplyScalar(.67),.15,.44);
+ const add=(geometry,material,x=0,y=0,z=0)=>{const obj=new THREE.Mesh(geometry,material);obj.position.set(x,y,z);group.add(obj);return obj};
+ const cylinder=(top,bottom,h,y,m=main)=>add(new THREE.CylinderGeometry(top,bottom,h,32),m,0,y);
+ const ball=(r,y,m=main,x=0)=>add(new THREE.SphereGeometry(r,24,16),m,x,y);
+ const ring=(r,t,y,m=metal)=>{let o=add(new THREE.TorusGeometry(r,t,9,32),m,0,y);o.rotation.x=Math.PI/2;return o};
+ cylinder(.35,.41,.15,.09);cylinder(.28,.34,.11,.21,detail);
+ const kind=pieceStyles[player];
+ if(kind==='pawn'){cylinder(.17,.28,.41,.48);ring(.19,.045,.71);ball(.23,.87)}
+ if(kind==='rook'){
+  cylinder(.25,.29,.51,.51);cylinder(.36,.28,.12,.82);cylinder(.29,.33,.08,.91,detail);
+  for(let k=0;k<6;k++){const a=k*Math.PI/3;add(new THREE.BoxGeometry(.16,.18,.17),main,Math.cos(a)*.28,1.02,Math.sin(a)*.28)}
+ }
+ if(kind==='king'||kind==='queen'){
+  cylinder(.18,.29,.52,.51);ring(.27,.04,.79);cylinder(.26,.20,.13,.87,metal);
+  if(kind==='king'){
+   ball(.18,1.0);add(new THREE.BoxGeometry(.095,.36,.11),metal,0,1.23);add(new THREE.BoxGeometry(.29,.09,.11),metal,0,1.28)
+  }else{
+   const crown=cylinder(.30,.15,.21,1.05);crown.material=main;
+   for(let k=0;k<6;k++){const a=k*Math.PI/3;ball(.075,1.19,metal,Math.cos(a)*.23).position.z=Math.sin(a)*.23}
+   ball(.12,1.28,metal)
+  }
+ }
+ if(kind==='bishop'){
+  cylinder(.2,.29,.47,.5);ball(.25,.86);const tip=add(new THREE.ConeGeometry(.21,.36,32),main,0,1.13);tip.rotation.z=.12;ball(.078,1.34,metal)
+ }
+ if(kind==='knight'){
+  cylinder(.22,.29,.31,.4);
+  const neck=add(new THREE.CylinderGeometry(.14,.26,.53,7),main,-.08,.75);neck.rotation.z=-.22;
+  const snout=add(new THREE.BoxGeometry(.35,.20,.26),main,-.22,1.01);
+  snout.rotation.z=.18;
+  add(new THREE.ConeGeometry(.12,.24,4),detail,-.13,1.19,-.11);
+  add(new THREE.ConeGeometry(.12,.24,4),detail,.05,1.19,.11);
+  ball(.045,1.06,metal,-.25).position.z=.135
+ }
+ group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.piece={player,id}}});
+}
+function makePiece(player,id){const group=new THREE.Group();buildPiece(group,player,id);pieceGroup.add(group);return {player,id,progress:-1,group,target:new THREE.Vector3(),jumpUntil:0}}
 for(let i=0;i<4;i++)for(let j=0;j<4;j++)pieces.push(makePiece(i,j));
+function refreshPieceModel(player){for(const p of pieces)if(p.player===player)buildPiece(p.group,p.player,p.id)}
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let current=0,dice=null,phase='roll',busy=false,winner=null,toastTimer=0;const $=s=>document.querySelector(s);const dfaces=['⚀','⚁','⚂','⚃','⚄','⚅'];
 // Dado físico: faces opostas somam 7, e cada resultado aparece voltado ao jogador.
 const faceNumber={front:1,back:6,right:2,left:5,top:3,bottom:4};
@@ -70,6 +121,12 @@ const angleFor={1:[0,0],2:[0,-90],3:[-90,0],4:[90,0],5:[0,90],6:[0,180]};let thr
 function showDiceFace(n,animated=false){const [ax,ay]=angleFor[n];throws++;cube.style.transition=animated?'transform 1.45s cubic-bezier(.14,.75,.23,1)':'none';cube.style.transform=`rotateX(${ax+(animated?1080*throws:0)}deg) rotateY(${ay+(animated?1440*throws:0)}deg)`;}
 const profiles=C.map((c,i)=>({name:N[i],photo:''}));
 try{const saved=JSON.parse(localStorage.getItem('ludo-3d-profiles')||'null');if(Array.isArray(saved))saved.slice(0,4).forEach((p,i)=>{if(typeof p?.name==='string')profiles[i].name=p.name.slice(0,20);if(typeof p?.photo==='string'&&p.photo.startsWith('data:image/'))profiles[i].photo=p.photo})}catch(e){}
+const piecePlayerSelect=$('#piece-player'),pieceStyleSelect=$('#piece-style');
+piecePlayerSelect.innerHTML=N.map((n,i)=>`<option value="${i}">${i+1} · ${n}</option>`).join('');
+function syncPiecePicker(){pieceStyleSelect.value=pieceStyles[Number(piecePlayerSelect.value)]}
+piecePlayerSelect.onchange=syncPiecePicker;
+pieceStyleSelect.onchange=()=>{const i=Number(piecePlayerSelect.value);pieceStyles[i]=pieceStyleSelect.value;refreshPieceModel(i);try{localStorage.setItem('ludo-3d-piece-styles',JSON.stringify(pieceStyles))}catch(e){};toast(`${N[i]}: ${styleNames[pieceStyles[i]]}`)};
+syncPiecePicker();
 function profileName(i){return profiles[i].name||N[i]}
 function avatarSvg(i){const initials=(profileName(i).trim()[0]||N[i][0]).toUpperCase();const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" rx="18" fill="${C[i]}"/><circle cx="40" cy="29" r="15" fill="#ffffff" opacity=".93"/><path d="M13 76 Q14 48 40 48 Q66 48 67 76" fill="#ffffff" opacity=".93"/><text x="64" y="16" text-anchor="middle" fill="#183052" font-size="14" font-weight="bold">${i+1}</text></svg>`;return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)}
 function avatar(i){return profiles[i].photo||avatarSvg(i)}
@@ -84,36 +141,50 @@ function drawSeats(){const host=$('#seats');host.replaceChildren();seatElements.
  const status=document.createElement('div');status.className='seat-status';status.textContent=winner===i?'🏆 Venceu':i===current?'● SUA VEZ':'Aguardando';info.append(name,meta,status);
  const tag=document.createElement('span');tag.className='seat-tag';tag.textContent='Jogador '+(i+1);const edit=document.createElement('button');edit.type='button';edit.className='seat-edit';edit.title='Editar nome e foto';edit.textContent='✎';edit.onclick=()=>{$('#edit-player').value=String(i);loadProfileEditor();$('#edit-name').focus();$('#edit-name').scrollIntoView({block:'nearest',behavior:'smooth'})};el.append(img,info,tag,edit);host.append(el);seatElements.set(i,el)}updateSeats()}
 const seatProjection=new THREE.Vector3();
+function projectPoint(v,w,h){seatProjection.copy(v).project(camera);return {x:(seatProjection.x+1)*w/2,y:(1-seatProjection.y)*h/2}}
+function polyAxes(points){const axes=[];for(let i=0;i<points.length;i++){const p=points[i],q=points[(i+1)%points.length],dx=q.x-p.x,dy=q.y-p.y,len=Math.hypot(dx,dy)||1;axes.push({x:-dy/len,y:dx/len})}return axes}
+function overlapRectPolygon(x,y,halfW,halfH,poly){const rect=[{x:x-halfW,y:y-halfH},{x:x+halfW,y:y-halfH},{x:x+halfW,y:y+halfH},{x:x-halfW,y:y+halfH}];for(const axis of [{x:1,y:0},{x:0,y:1},...polyAxes(poly)]){const a=poly.map(p=>p.x*axis.x+p.y*axis.y),b=rect.map(p=>p.x*axis.x+p.y*axis.y);if(Math.max(...a)<Math.min(...b)||Math.max(...b)<Math.min(...a))return false}return true}
 function updateSeats(){
  const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;
- const small=w<650,cardW=small?110:154,cardH=small?58:76,pad=small?8:15;
- const cx=w/2,cy=h/2;const minX=cardW/2+pad,maxX=w-cardW/2-pad,minY=cardH/2+17,maxY=h-cardH/2-25;
+ // Usa o contorno projetado da PLATAFORMA, não apenas o centro das casas.
+ const corners=[[-8.1,-8.1],[8.1,-8.1],[8.1,8.1],[-8.1,8.1]].map(([x,z])=>projectPoint(new THREE.Vector3(x,.24,z),w,h));
+ const center=projectPoint(new THREE.Vector3(0,.24,0),w,h);
+ const small=w<650,cardW=small?108:148,cardH=small?56:73,pad=small?5:12;
+ const halfW=cardW/2+7,halfH=cardH/2+8;
+ const minX=halfW+pad,maxX=w-halfW-pad,minY=halfH+pad,maxY=h-halfH-pad-12;
  const points=[];
  for(const i of active){
-  seatProjection.copy(baseCenters[i]).project(camera);
-  const bx=(seatProjection.x+1)*w/2,by=(1-seatProjection.y)*h/2;
-  // Cartão fica na direção da sua base, fora do tabuleiro e dentro da arena.
-  const dx=bx-cx,dy=by-cy;
-  const length=Math.hypot(dx,dy)||1;const ux=dx/length,uy=dy/length;
-  // Mantém a caixa próxima à sua base e acompanha a rotação, sem linhas de conexão.
-  const offset=small?1.50:1.77;
-  const x=Math.max(minX,Math.min(maxX,cx+dx*offset));
-  const y=Math.max(minY,Math.min(maxY,cy+dy*offset));
-  points.push({i,bx,by,x,y});
- }
- // Evita cartões sobrepostos quando a mesa está rodada em diagonal.
- for(let iter=0;iter<12;iter++)for(let a=0;a<points.length;a++)for(let b=a+1;b<points.length;b++){
-  const A=points[a],B=points[b],dx=B.x-A.x,dy=B.y-A.y;
-  const overlapX=cardW+9-Math.abs(dx),overlapY=cardH+14-Math.abs(dy);
-  if(overlapX>0&&overlapY>0){
-   if(overlapX<overlapY){const push=overlapX/2+1,sgn=dx>=0?1:-1;A.x-=sgn*push;B.x+=sgn*push}
-   else{const push=overlapY/2+1,sgn=dy>=0?1:-1;A.y-=sgn*push;B.y+=sgn*push}
-   A.x=Math.max(minX,Math.min(maxX,A.x));B.x=Math.max(minX,Math.min(maxX,B.x));A.y=Math.max(minY,Math.min(maxY,A.y));B.y=Math.max(minY,Math.min(maxY,B.y));
+  const base=projectPoint(baseCenters[i],w,h);
+  let dx=base.x-center.x,dy=base.y-center.y;
+  // O vetor da base acompanha a rotação da câmera.
+  const length=Math.hypot(dx,dy)||1;dx/=length;dy/=length;
+  let x=base.x,y=base.y;
+  // Empurra o cartão PARA FORA do contorno 3D da mesa; margem extra para peões altos.
+  for(let k=0;k<130&&overlapRectPolygon(x,y,halfW,halfH,corners);k++){x+=dx*5;y+=dy*5}
+  x+=dx*14;y+=dy*14;
+  // Se tocar as bordas do palco, busca uma posição livre perto da mesma base.
+  x=Math.max(minX,Math.min(maxX,x));y=Math.max(minY,Math.min(maxY,y));
+  if(overlapRectPolygon(x,y,halfW,halfH,corners)){
+   let best={x,y,dist:Infinity};
+   for(let xx=minX;xx<=maxX;xx+=16)for(let yy=minY;yy<=maxY;yy+=16){
+    if(overlapRectPolygon(xx,yy,halfW,halfH,corners))continue;
+    const dist=Math.hypot(xx-x,yy-y)+Math.hypot(xx-base.x,yy-base.y)*.12;
+    if(dist<best.dist)best={x:xx,y:yy,dist};
+   }
+   if(Number.isFinite(best.dist)){x=best.x;y=best.y}
   }
+  points.push({i,x,y,bx:base.x,by:base.y});
  }
- for(const p of points){const el=seatElements.get(p.i);if(!el)continue;
-  el.style.left=p.x+'px';el.style.top=p.y+'px';
+ // Desempate de cartões quando a câmera está alinhada na diagonal.
+ for(let iter=0;iter<24;iter++)for(let a=0;a<points.length;a++)for(let b=a+1;b<points.length;b++){
+  const A=points[a],B=points[b],dx=B.x-A.x,dy=B.y-A.y;
+  if(Math.abs(dx)>=cardW+9||Math.abs(dy)>=cardH+12)continue;
+  const overlapX=cardW+10-Math.abs(dx),overlapY=cardH+12-Math.abs(dy);
+  if(overlapX<overlapY){const move=overlapX/2+2,sign=dx>=0?1:-1;A.x-=sign*move;B.x+=sign*move}
+  else{const move=overlapY/2+2,sign=dy>=0?1:-1;A.y-=sign*move;B.y+=sign*move}
+  for(const P of [A,B]){P.x=Math.max(minX,Math.min(maxX,P.x));P.y=Math.max(minY,Math.min(maxY,P.y));}
  }
+ for(const p of points){const el=seatElements.get(p.i);if(!el)continue;el.style.left=p.x+'px';el.style.top=p.y+'px'}
 }
 function loadProfileEditor(){const i=Number($('#edit-player').value);$('#edit-name').value=profileName(i);$('#edit-photo').value=''}
 function persistProfiles(){try{localStorage.setItem('ludo-3d-profiles',JSON.stringify(profiles))}catch(e){toast('Foto grande demais para salvar. Tente outra foto.')}}
@@ -133,5 +204,5 @@ const wait=t=>new Promise(r=>setTimeout(r,t));async function roll(){if(phase!=='
 async function move(p){if(phase!=='choose'||busy||!eligible(p,dice))return;busy=true;renderUI();let n=dice;if(p.progress===-1){p.progress=0;p.jumpUntil=performance.now()+430;refreshPositions();await wait(500)}else{for(let a=0;a<n;a++){p.progress++;p.jumpUntil=performance.now()+230;refreshPositions();await wait(230)}}let captured=false;if(p.progress>=0&&p.progress<=51){const idx=(start[p.player]+p.progress)%52;if(!safe.has(idx)){for(const q of pieces){if(q.player===p.player||q.progress<0||q.progress>51)continue;if((start[q.player]+q.progress)%52===idx){q.progress=-1;q.jumpUntil=performance.now()+450;captured=true}}}}refreshPositions();if(captured)toast('💥 Peça adversária capturada!');if(p.progress===57)toast('🏁 Uma peça chegou ao centro!');if(pieces.filter(q=>q.player===current&&q.progress===57).length===4){winner=current;phase='done';hint(`🏆 ${profileName(current)} venceu! Comece uma nova partida.`);$('#die-meta').textContent='Partida encerrada';toast(`🏆 ${profileName(current)} é o campeão!`);busy=false;renderUI();return}busy=false;if(n===6||captured){dice=null;phase='roll';hint(captured?'Capturou uma peça! Você pode lançar de novo.':'Tirou 6! Jogue novamente.');renderUI()}else next()}
 $('#roll').onclick=roll;function restart(){const count=Number($('#player-count').value);active=count===2?[0,2]:count===3?[0,1,2]:[0,1,2,3];for(const p of pieces){p.progress=-1;p.group.visible=active.includes(p.player)}current=active[0];dice=null;phase='roll';busy=false;winner=null;$('#die-meta').textContent='Clique em lançar para jogar o dado e começar a partida.';hint('Tire 6 para tirar uma peça da base.');showDiceFace(1,false);refreshPositions();renderUI();toast('Nova partida iniciada!')}$('#reset').onclick=restart;$('#player-count').onchange=restart;
 let pointerDown=null;canvas.addEventListener('pointerdown',e=>{pointerDown={x:e.clientX,y:e.clientY}});canvas.addEventListener('pointerup',e=>{if(!pointerDown||Math.hypot(pointerDown.x-e.clientX,pointerDown.y-e.clientY)>7)return;if(phase!=='choose'||busy)return;const r=canvas.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(pieceGroup.children,true);for(const h of hits){const ref=h.object.userData.piece;if(!ref)continue;const p=pieces.find(q=>q.player===ref.player&&q.id===ref.id);if(p&&eligible(p,dice)){move(p);return}}});
-function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();updateSeats()}new ResizeObserver(resize).observe(stage);resize();const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();for(const p of pieces){p.group.position.lerp(p.target,.23);const select=phase==='choose'&&eligible(p,dice)&&!busy;p.group.scale.setScalar(select?1.12+.06*Math.sin(t*7):1);p.group.children[3].material=colors[p.player];const remain=p.jumpUntil-performance.now();const hop=remain>0?.33*Math.sin((1-remain/230)*Math.PI)**2:0;p.group.position.y=p.target.y+(select?.13+.07*Math.sin(t*7):0)+hop}controls.update();updateSeats();renderer.render(scene,camera)}restart();animate();
+function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();updateSeats()}new ResizeObserver(resize).observe(stage);resize();const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();for(const p of pieces){p.group.position.lerp(p.target,.23);const select=phase==='choose'&&eligible(p,dice)&&!busy;p.group.scale.setScalar(select?1.12+.06*Math.sin(t*7):1);const remain=p.jumpUntil-performance.now();const hop=remain>0?.33*Math.sin((1-remain/230)*Math.PI)**2:0;p.group.position.y=p.target.y+(select?.13+.07*Math.sin(t*7):0)+hop}controls.update();updateSeats();renderer.render(scene,camera)}restart();animate();
 </script></body></html>
