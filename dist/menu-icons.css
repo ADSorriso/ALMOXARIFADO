@@ -1,0 +1,7 @@
+.sidebar nav button .menu-svg-icon{display:block;flex:none;width:24px;height:24px;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;fill:none;filter:drop-shadow(0 1px 2px #0004);transition:transform .18s ease,color .18s ease}
+.sidebar nav button{gap:12px;font-size:14px;min-height:48px}
+.sidebar nav button.active .menu-svg-icon{filter:drop-shadow(0 0 5px #c7f06442);stroke-width:2}
+.sidebar nav button:hover .menu-svg-icon{transform:translateY(-1px) scale(1.08)}
+.sidebar nav button[data-page="vehicles"] .menu-svg-icon{width:26px;height:26px}
+.sidebar nav button[data-page="tires"] .menu-svg-icon{stroke-width:1.95}
+@media(max-width:700px){.sidebar nav button .menu-svg-icon{width:22px;height:22px}.sidebar nav button{min-height:42px}}

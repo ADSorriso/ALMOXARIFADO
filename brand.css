@@ -1,0 +1,17 @@
+/* Identidade ALMOX GGF com logomarca municipal original. */
+.sidebar .brand.brand-ggf{display:flex;flex-direction:column;align-items:stretch;gap:14px;padding:0 8px 28px}
+.official-logo{width:100%;background:#fff;border-radius:11px;padding:9px 8px;display:flex;align-items:center;justify-content:center;border:1px solid #dde6ef;box-shadow:0 10px 25px #03070d38}
+.official-logo img{width:100%;max-width:100%;height:auto;object-fit:contain;display:block}
+.brand-ggf .brand-copy{padding:0 4px}
+.brand-ggf .brand-copy strong{font:800 25px/1.18 Manrope,system-ui,sans-serif;letter-spacing:-1.3px;color:#f3f8ff;display:block}
+.brand-ggf .brand-copy strong span{color:#c7f064}
+.brand-ggf .brand-copy small{display:block;color:#91a3b7;font-size:10px;font-weight:700;letter-spacing:1.15px;margin-top:6px}
+.brand-ggf:after{content:'';display:block;width:34px;height:3px;background:#c7f064;border-radius:6px;margin:0 4px}
+@media(max-width:700px){
+ .sidebar .brand.brand-ggf{display:flex;flex-direction:row;align-items:center;gap:12px;padding:0 5px 12px}
+ .official-logo{width:133px;min-width:133px;padding:5px;border-radius:8px}
+ .brand-ggf .brand-copy{padding:0}
+ .brand-ggf .brand-copy strong{font-size:20px;letter-spacing:-.8px}
+ .brand-ggf .brand-copy small{font-size:9px;letter-spacing:.5px}
+ .brand-ggf:after{display:none}
+}

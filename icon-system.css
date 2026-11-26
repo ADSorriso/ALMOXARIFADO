@@ -1,0 +1,16 @@
+/* Iconografia unificada: desenhos vetoriais azuis em todas as telas. */
+.context-icon{display:inline-block;width:21px;height:21px;vertical-align:middle;flex:none;stroke:currentColor}
+.stat-icon{width:40px;height:40px;border-radius:11px;background:#e7f0ff;color:#154c9c}
+.stat-icon .context-icon{width:23px;height:23px;stroke-width:1.9}
+.quick button{align-content:start;min-height:105px;transition:background .16s,border-color .16s,transform .16s}
+.quick button:hover{background:#eaf3ff;border-color:#a9c6ed;transform:translateY(-1px)}
+.quick button>.context-icon{width:28px;height:28px;color:#174e9e}
+.event-dot .context-icon{width:19px;height:19px}
+.notice{display:flex;align-items:center;gap:10px}
+.notice .context-icon{width:22px;height:22px}
+.pill-row button[data-export]{display:inline-flex;align-items:center;gap:8px}
+.pill-row button[data-export] .context-icon{width:17px;height:17px}
+#main-action{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+#main-action .context-icon{width:18px;height:18px;stroke-width:2.3}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center}
+.icon-btn .context-icon{width:19px;height:19px}

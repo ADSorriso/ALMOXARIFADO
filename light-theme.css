@@ -1,0 +1,76 @@
+/* Identidade institucional clara: branco e azul da logomarca de Sorriso. */
+:root{color:#17365f;background:#f8fbff;color-scheme:light}
+body{background:#f8fbff;color:#17365f}
+.sidebar{background:#fff;border-right:1px solid #dce6f2}
+.sidebar .brand.brand-ggf{flex-direction:row;align-items:center;gap:8px;padding:0 4px 22px}
+.sidebar .official-logo{width:104px;min-width:104px;padding:4px;border:1px solid #dbe5f1;background:#fff;box-shadow:none;border-radius:7px}
+.sidebar .brand-ggf .brand-copy{flex:1;min-width:0;padding:0}
+.sidebar .brand-ggf .brand-copy strong{font-size:17px;letter-spacing:-.9px;color:#0d3485;white-space:nowrap}
+.sidebar .brand-ggf .brand-copy strong span{color:#0d3485}
+.sidebar .brand-ggf .brand-copy small{font-size:8px;font-weight:800;letter-spacing:.35px;line-height:1.5;color:#56739b;margin-top:5px}
+.sidebar .brand-ggf:after{display:none}
+.menu-label{color:#798da9}
+.sidebar nav button{color:#476384}
+.sidebar nav button:hover{background:#eef4fc;color:#0d3485}
+.sidebar nav button.active{background:#e8f0ff;color:#0d3485;border-left:3px solid #11439c}
+.sidebar nav button.active .menu-svg-icon{filter:none;stroke-width:2}
+.sidebar nav button b{background:#e5eefb;color:#1d4e97}
+.side-footer{border-color:#dfe8f3}.side-footer strong{color:#1a3862}.side-footer small{color:#6a829e}
+.avatar,.top-avatar{background:#e7efff;color:#153e95}.online,.pulse{background:#1672b9}
+.topbar{background:#fff;border-bottom:1px solid #e2eaf4}
+.breadcrumb{color:#8193ac}.breadcrumb strong{color:#0c348a}.breadcrumb span{color:#b5c3d4}
+.top-actions{color:#637d9d}
+.eyebrow{color:#0e50a7}.page-heading h1{color:#102f72}.page-heading p{color:#71839d}
+.primary{background:#123c96;color:#fff;box-shadow:0 4px 10px #163e8915}
+.primary:hover{background:#0b2f79}.primary:disabled{background:#b9c8df;color:#fff}
+.ghost{background:#fff;color:#16448e;border:1px solid #c9d8eb}.ghost:hover{background:#f2f6fc}
+.stat,.panel{background:#fff;border:1px solid #dce7f4;box-shadow:0 3px 14px #1c4d8910}
+.stat-top,.stat-bottom,.panel-head p{color:#69819f}.stat-number{color:#123d88}.stat-icon{background:#e6efff;color:#194fa3}
+.panel-head h2,.setting-card h3{color:#163c86}.link{color:#1450aa}.link:hover{text-decoration:underline}
+th{background:#f7faff;color:#6b83a4;border-bottom:1px solid #dce6f1}
+td{color:#233f64;border-bottom:1px solid #e3ebf4}
+.muted{color:#7188a4}.code,.filter-code{color:#164a9e}
+.chip{background:#e9eff7;color:#4b6381}.chip.done{background:#e0f5e7;color:#196a40}.chip.pending{background:#fff3df;color:#865b18}.chip.progress{background:#e2f1ff;color:#22628b}
+.empty{color:#7288a5}.empty strong{color:#244674}
+.activity .event{color:#6e84a1}.event strong{color:#213e68}.event small{color:#8194ad}.event-dot{background:#e9f1ff;color:#1c50a0}
+.quick button{background:#f5f9ff;border-color:#d9e6f7;color:#23487f}.quick button span{color:#1d55a5}
+.search,.toolbar select{background:#fff;color:#234368;border:1px solid #c9d9ec}
+.search:focus,.field input:focus,.field select:focus{border-color:#1e58a8}
+.vehicle-card{background:#fff;border:1px solid #d6e3f2}
+.vehicle-art{background:radial-gradient(ellipse at 50% 85%,#eaf4ff,#d7e6f9 60%,#f7fbff)}
+.vehicle-art:after{color:#587ca1}.vehicle-details h3{color:#163b81}.vehicle-details p{color:#7188a4}.vehicle-details button{color:#1755ac}
+.notice{background:#eef5ff;border:1px solid #cfe0f8;color:#204a85}
+.pill{background:#edf4fd;color:#285181;border:1px solid #d3e3f5}
+.settings-grid .setting-card{background:#fff;border:1px solid #d9e6f2}.setting-card p{color:#7188a3}
+dialog,#purchase-dialog{background:#fff;color:#173a6e;border:1px solid #cbdcef;box-shadow:0 24px 80px #183e6b38}
+dialog::backdrop{background:#0b2f5d75}
+.modal-top,.modal-actions,.order-modal-head,.order-modal-footer{border-color:#dce7f4}
+.modal-top h2,.order-modal-head h2{color:#113984}.icon-btn,.order-modal-head button{color:#526f94}
+.field label,.order-field span{color:#315685}
+.field input,.field select,.field textarea,.order-field input,.order-field textarea,.order-item input,.order-form-panel select{background:#fdfefe;border:1px solid #cbdbee;color:#15345b}
+.toast{background:#16479a;color:#fff}
+.order-template-choices button{background:#f6faff;color:#1b4287;border-color:#d4e3f5}
+.order-template-choices button:hover{background:#eaf3ff;border-color:#1a58aa}
+.order-template-choices small{color:#6d86a4}
+.order-tabs button{background:#edf4fc;border:1px solid #d4e2f3;color:#315985}
+.order-tabs button.selected{background:#e0edff;border:1px solid #1a55ad;color:#12408d}
+.order-form-panel h3,.order-preview-panel h3{color:#153e86}
+.order-item-header{color:#7b8daa}.order-item button{background:#fff0f1;color:#b32840}
+.order-modal-footer span{color:#6e829d}
+#order-document{background:#eef3fa}
+.viewer-shell{background:#eef4fc;border-color:#ccddf0}.viewer-top{background:#f6faff}.viewer-live{color:#1f559c}
+.viewer-controls button{background:#fff;color:#14458d;border-color:#cbdcf0}.viewer-controls button:hover{background:#e6f0fc}
+.viewer-legend{border-color:#d4e2f2;color:#496e9a}
+.wheel-row{background:#f5f9ff;border:1px solid #d6e3f3;color:#436389}
+.wheel-row strong{color:#1e3c6e}.wheel-row small{color:#7085a0}
+.wheel-row:hover,.wheel-row.selected{background:#e9f1fd;border-color:#6296d0}
+.wheel-information{background:#f7faff;border:1px solid #d4e1f2}
+.wheel-info-title strong{color:#164aa0}.wheel-info-title p{color:#6a82a0}
+.wheel-record{border-color:#dbe5f1}.wheel-record p{color:#526c8d}.wheel-record small{color:#8296af}
+@media(max-width:700px){
+ .sidebar{background:#fff;border-bottom:1px solid #dce7f2}
+ .sidebar .brand.brand-ggf{padding:0 5px 10px;gap:12px}
+ .sidebar .official-logo{width:119px;min-width:119px}
+ .sidebar .brand-ggf .brand-copy strong{font-size:20px}
+ .sidebar .brand-ggf .brand-copy small{font-size:9px}
+}
